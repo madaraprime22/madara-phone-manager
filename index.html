@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090914">
+<title>MADARA PHONE MANAGER</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #090914;
+  color: white;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 23px 18px;
+  background: #111124;
+  border-bottom: 1px solid #343052;
+}
+
+header h1 {
+  color: #a78bfa;
+  font-size: 22px;
+}
+
+header p {
+  color: #9996ae;
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 20px;
+  margin: auto;
+}
+
+.welcome {
+  margin: 15px 0 25px;
+}
+
+.welcome h2 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.welcome p {
+  color: #a5a2b8;
+  font-size: 13px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.stat {
+  background: #151529;
+  padding: 19px;
+  border: 1px solid #302c4b;
+  border-radius: 14px;
+}
+
+.stat span {
+  color: #aaa5c2;
+  font-size: 12px;
+}
+
+.stat h2 {
+  font-size: 28px;
+  margin-top: 9px;
+  color: #a78bfa;
+}
+
+.panel {
+  background: #151529;
+  border: 1px solid #302c4b;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.panel h3 {
+  margin-bottom: 17px;
+  font-size: 17px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 9px;
+  border: 1px solid #403b61;
+  background: #0d0d1b;
+  color: white;
+  margin-bottom: 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #a78bfa;
+}
+
+button {
+  border: none;
+  border-radius: 9px;
+  padding: 13px 17px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.primary {
+  background: #8055e8;
+  color: white;
+  width: 100%;
+}
+
+.primary:active {
+  background: #6840c8;
+}
+
+.device {
+  background: #101020;
+  border: 1px solid #393451;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.device-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.device h4 {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.device p {
+  font-size: 12px;
+  color: #aaa5bd;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+
+.tag {
+  color: #c4b5fd;
+  font-size: 11px;
+  background: #30234e;
+  padding: 6px 9px;
+  border-radius: 20px;
+  height: fit-content;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.google {
+  background: #8055e8;
+  color: white;
+}
+
+.delete {
+  background: #40202d;
+  color: #ff9eaf;
+}
+
+.empty {
+  text-align: center;
+  color: #9996ae;
+  font-size: 13px;
+  padding: 20px;
+}
+
+.notice {
+  color: #d8c9ff;
+  background: #201b37;
+  border: 1px solid #514077;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #77738d;
+  font-size: 11px;
+}
+
+@media(min-width:650px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>✦ MADARA PHONE MANAGER</h1>
+  <p>PERSONAL DEVICE MANAGEMENT</p>
+</header>
+
+<main class="container">
+
+  <section class="welcome">
+    <h2>Tableau de bord</h2>
+    <p>Bienvenue dans ton espace de gestion des téléphones.</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <span>Total téléphones</span>
+      <h2 id="total">0</h2>
+    </div>
+
+    <div class="stat">
+      <span>Comptes Gmail</span>
+      <h2 id="accounts">0</h2>
+    </div>
+
+    <div class="stat">
+      <span>Appareils renseignés</span>
+      <h2 id="registered">0</h2>
+    </div>
+
+    <div class="stat">
+      <span>À vérifier</span>
+      <h2 id="review">0</h2>
+    </div>
+  </div>
+
+  <div class="notice">
+    🔒 Sécurité : ce site ne demande jamais ton mot de passe
+    Google. Les appareils sont renseignés manuellement.
+    La déconnexion se fait uniquement sur les pages officielles
+    de Google.
+  </div>
+
+  <section class="panel">
+    <h3>＋ Ajouter un téléphone</h3>
+
+    <input id="phone" placeholder="Nom du téléphone (ex : Samsung A16)">
+
+    <input id="email" type="email"
+      placeholder="Adresse Gmail associée">
+
+    <input id="extra" placeholder="Autre Gmail (facultatif)">
+
+    <button class="primary" onclick="addDevice()">
+      AJOUTER LE TÉLÉPHONE
+    </button>
+  </section>
+
+  <section class="panel">
+    <h3>📱 Mes téléphones</h3>
+
+    <div id="devices">
+      <div class="empty">Aucun téléphone ajouté.</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h3>🔐 Gestion Google</h3>
+    <p style="font-size:13px;color:#aaa5bd;line-height:1.7;margin-bottom:15px">
+      Consulte les appareils connectés à tes comptes Google
+      et utilise les options officielles de déconnexion.
+    </p>
+
+    <button class="primary" onclick="openGoogle()">
+      CONSULTER MES APPAREILS GOOGLE
+    </button>
+  </section>
+
+</main>
+
+<footer>
+  MADARA PHONE MANAGER © 2026
+  <br><br>
+  Gestion personnelle des appareils
+</footer>
+
+<script>
+let devices = [];
+
+try {
+  devices = JSON.parse(
+    localStorage.getItem("madara_devices") || "[]"
+  );
+  if (!Array.isArray(devices)) devices = [];
+} catch {
+  devices = [];
+}
+
+function save() {
+  localStorage.setItem(
+    "madara_devices",
+    JSON.stringify(devices)
+  );
+}
+
+function addDevice() {
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const extra = document.getElementById("extra").value.trim();
+
+  if (!phone || !email) {
+    alert("Entre le nom du téléphone et son Gmail.");
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert("Adresse Gmail invalide.");
+    return;
+  }
+
+  if (extra && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(extra)) {
+    alert("Le deuxième compte est invalide.");
+    return;
+  }
+
+  devices.push({
+    id: Date.now(),
+    phone: phone,
+    emails: [...new Set([email, extra].filter(Boolean))]
+  });
+
+  save();
+  render();
+
+  document.getElementById("phone").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("extra").value = "";
+}
+
+function removeDevice(id) {
+  if (!confirm("Supprimer ce téléphone de ta liste ?")) return;
+
+  devices = devices.filter(d => d.id !== id);
+  save();
+  render();
+}
+
+function openGoogle() {
+  window.open(
+    "https://myaccount.google.com/device-activity",
+    "_blank",
+    "noopener,noreferrer"
+  );
+}
+
+function render() {
+  const list = document.getElementById("devices");
+
+  document.getElementById("total").textContent = devices.length;
+
+  const allEmails = devices.flatMap(d => d.emails);
+  const uniqueEmails = [...new Set(allEmails)];
+
+  document.getElementById("accounts").textContent =
+    uniqueEmails.length;
+
+  document.getElementById("registered").textContent =
+    devices.length;
+
+  document.getElementById("review").textContent =
+    devices.length;
+
+  if (!devices.length) {
+    list.innerHTML =
+      '<div class="empty">Aucun téléphone ajouté.</div>';
+    return;
+  }
+
+  list.innerHTML = "";
+
+  devices.forEach(device => {
+    const card = document.createElement("div");
+    card.className = "device";
+
+    const top = document.createElement("div");
+    top.className = "device-top";
+
+    const info = document.createElement("div");
+
+    const name = document.createElement("h4");
+    name.textContent = "📱 " + device.phone;
+    info.appendChild(name);
+
+    device.emails.forEach(email => {
+      const p = document.createElement("p");
+      p.textContent = "✉ " + email;
+      info.appendChild(p);
+    });
+
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = device.emails.length > 1
+      ? "Plusieurs Gmail"
+      : "Un Gmail";
+
+    top.append(info, tag);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const googleBtn = document.createElement("button");
+    googleBtn.className = "google";
+    googleBtn.textContent = "Voir chez Google";
+    googleBtn.addEventListener("click", openGoogle);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete";
+    deleteBtn.textContent = "Retirer de la liste";
+    deleteBtn.addEventListener("click", () => removeDevice(device.id));
+
+    actions.append(googleBtn, deleteBtn);
+    card.append(top, actions);
+    list.appendChild(card);
+  });
+}
+
+render();
+</script>
+
+</body>
+</html>
